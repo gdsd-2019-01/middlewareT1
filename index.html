@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Currency Converter</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script>
+        function convert(){
+            var c1 = document.getElementById("currency1").value;
+            var c2 = document.getElementById("currency2").value;
+            var name = document.getElementById("customer").value;
+            var result;
+            if(c2!=0 && c1!='') {
+                if (c2=='INR') {
+                    c2 = 78.49;
+                    result = 'Rs.';
+                } else if (c2== 'USD') {
+                    c2 = 1.11;
+                    result = '$';
+                }  else if (c2== 'BPS') {
+                    c2 = 0.86;
+                    result = '£';
+                } else {
+                    c2 = 120.41;
+                    result = '¥';
+                }
+                var amount = c1*c2;
+                result = result + amount.toFixed(2);
+                document.getElementById("result").value = result;
+                document.getElementById("ca").innerHTML = name + " your converted amount is";
+            }
+        }
+        function reset(){
+            document.getElementById("currency1").value = '';
+            document.getElementById("customer").value = '';
+            document.getElementById("currency2").value = '0';
+            document.getElementById("result").value = '';
+            document.getElementById("ca").innerHTML = "Coverted Amount";
+        }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron" style="margin:40px ; border: 1px solid black;">
+                    <h3 class="display-4">Currency Converter</h3>
+                    Rates as of date: 27.10.2019
+                    <hr>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">Customer</div>
+                        </div>
+                        <input type="text" class="form-control" id="customer" placeholder="Enter your name">
+                      </div>
+
+                            <div class="input-group"  style="margin-top: 18px;">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">Euro Amount</div>
+                              </div>
+                              <input type="text" class="form-control" id="currency1" placeholder="Enter Amount in Euro">
+                            </div>
+
+                            <div class="form-group" style="margin-top: 18px;">
+                                    <select class="form-control" id="currency2">
+                                      <option selected disabled value="0">Select Currency</option>
+                                      <option value="INR">Indian Rupee</option>
+                                      <option value="USD">United States Dollar</option>
+                                      <option value="BPS">Pound Sterling</option>
+                                      <option value="JY">Japanese Yen</option>
+                                    </select>
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 18px;">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text" id="ca">Converted Amount</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="result"  placeholder="Converted Amount" disabled>
+                            </div>
+
+                            <button class="btn btn-outline-primary" onclick="convert()">Convert</button>
+                            <button class="btn btn-outline-danger" onclick="reset()">Reset</button>
+                   
+            </div>
+        </div>
+    </body>
+</html>
