@@ -96,3 +96,36 @@ function insert()
 }
 
 
+function addvisit()
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200)
+        { }
+    }
+
+    xhttp.open("POST", "/addvisit", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send('{"count":"NULL"}');
+}
+
+function loadVisits(){
+    addvisit();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200)
+        {
+            var result = this.responseText;
+            var results = JSON.parse(result);
+            var i = 0;
+            results.forEach((visits)=>
+        {
+            i++;
+        });
+            document.getElementById("visit").innerHTML ="Visits: "+ i;
+        }
+    }
+
+    xhttp.open("GET", "/showVisits", true);
+    xhttp.send();
+}

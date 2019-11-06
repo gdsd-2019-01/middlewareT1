@@ -5,7 +5,7 @@
         <script src="functions.js"></script>
     </head>
 
-    <body onload="loadHistory()">
+    <body onload="loadHistory();loadVisits();">
 
         <div class="container">
             <div class="row" style="margin-top: 40px;">
@@ -48,7 +48,7 @@
                                         <button class="btn btn-outline-primary" onclick="convert(); insert();">Convert</button>
                                         <button class="btn btn-outline-danger" onclick="reset()">Reset</button>
                                         <button class="btn btn-outline-success" id="counter">0</button>
-                                        
+                                        <button class="btn btn-outline-dark" id="visit">0</button>                                        
                         </div>
                 </div>
                 <!-- col 1 converter -->

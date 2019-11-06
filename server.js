@@ -56,6 +56,43 @@ function onRequest(req, res) {
         });
     }
 
+    else if(req.method == "GET" && req.url == '/showVisits')
+    {
+        res.statusCode == 200;
+        res.setHeader('Content-Type', 'application/json');
+
+        var conn = con.getConnection();
+
+        conn.query('SELECT * FROM visits', function(error, results, fields){
+            if(error) throw error;
+            var visits = JSON.stringify(results);
+            res.end(visits);
+        });
+
+        conn.end();
+    }
+
+    else if(req.method == "POST" && req.url == "/addvisit")
+    {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+
+        var content = '';
+        req.on('data', function(data){
+            content += data;
+
+            var obj = JSON.parse(content);
+            var conn = con.getConnection();
+            conn.query('INSERT INTO history.visits (visits.count) VALUES (?)',[null], function(error, results, fields){
+            if(error) throw error;
+            console.log("Success!");
+        });
+
+        conn.end();
+        res.end("Success!");
+        });
+    }
+
 }
 
 const server = http.createServer(onRequest);
